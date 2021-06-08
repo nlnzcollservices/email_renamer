@@ -8,16 +8,19 @@ Prepends the rvc datetime of an msg email file as a string to the .msg file name
 Delimited by a #
 yyyy_mm_dd-hh_mm_ss 
 
-creates log file that lists old f_name, new f_name, and file fixity. (| delimited)  
+creates log file that lists old f_name, new f_name, and file fixity. (| delimited)
+
+Moves .msg files to month folders
+Month_yyyy  
 
 """
 
 
 ### set this to the name of your log file.
-my_log_file = "rename_log_ld_v3.txt"
+my_log_file = "log.txt"
 
 ### set to folder to process.
-folder = r"Z:\NDHA\testing\emails\2020"
+folder = r"folder"
 
 def md5(fname):
     hash_md5 = hashlib.md5()

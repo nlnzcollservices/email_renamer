@@ -3,6 +3,20 @@ import os
 import glob
 import extract_msg
 import hashlib
+
+"""Prepends the rvc datetime of an msg email file as a string to the .msg file name
+Delimited by a #
+yyyy_mm_dd-hh_mm_ss 
+
+creates log file that lists old f_name, new f_name, and file fixity. (| delimited)
+"""
+### set this to the name of your log file.
+my_log_file = "log.txt"
+
+### set to folder to process.
+folder = r"folder"
+
+
 def md5(fname):
     hash_md5 = hashlib.md5()
     with open(fname, "rb") as f:
@@ -10,10 +24,8 @@ def md5(fname):
             hash_md5.update(chunk)
     return hash_md5.hexdigest()
 
-folder = r"Y:\pre-deposit_prod\LD_Proj\covid_collecting\COVID-19_email\new email"
 
 log_data = []
-
 for f in [x for x in os.listdir(folder) if x.endswith(".msg")]:
 	my_f = os.path.join(folder, f)
 
@@ -35,6 +47,6 @@ for f in [x for x in os.listdir(folder) if x.endswith(".msg")]:
 	os.rename(my_f,new_f_path)
 	log_data.append(f"{my_f}|{new_f_name}|{my_md5}")
 
-with open("rename_log.txt", "w", encoding = "utf8") as data:
+with open(my_log_file, "w", encoding = "utf8") as data:
 	data.write("\n".join(log_data))
 
