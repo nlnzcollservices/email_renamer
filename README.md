@@ -1,5 +1,5 @@
 # Email Renamer
-Prepends the received datetime of a msg email file as a string to the .msg file name and can move emails into month folders based on receive date. Extracts md5 hashes for file comparisons. 
+Prepends the received datetime of a msg email file as a string to the .msg file name and can move emails into month folders based on receive date. Logs list file fixity to aid file analysis.
 
 This project has three scripts:
 
