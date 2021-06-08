@@ -3,6 +3,6 @@ Prepends the received datetime of a msg email file as a string to the .msg file 
 
 This project has three scripts:
 
-1. email_renamer.py - it will rename all the files in a folder with the email's received date.
+1. email_renamer.py - renames all the .msg files in a folder with the email's received date.
 2. email_renamer_month_buckets.py - within the folder containing the emails, it will rename each email and move them into a folder based on the date the email was received.
-3. file_name_reverter.py - this will revert the file names back. It there are any duplicate file names it will print the filename, but not process it. 
+3. file_name_reverter.py - reverts the file names back. It there are any duplicate file names it will print the filename, but not process it.
