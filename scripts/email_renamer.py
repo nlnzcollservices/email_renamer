@@ -14,7 +14,7 @@ Creates log file that lists original filepath, new filename, and file fixity. (|
 my_log_file = "log.txt"
 
 ### set to filepath of folder containing .msg files to process.
-folder = r"folder"
+folder = r"Z:\NDHA\testing\emails\2020\March_2020"
 
 
 def md5(fname):
@@ -27,26 +27,23 @@ def md5(fname):
 
 log_data = []
 for f in [x for x in os.listdir(folder) if x.endswith(".msg")]:
-	msg_filepath = os.path.join(folder, f)
+    msg_filepath = os.path.join(folder, f)
+    try:
+        msg = extract_msg.Message(msg_filepath)
+        msg_date = msg.date
+        msg_datetime = parse(msg_date)
+        msg_date_string = msg_datetime.strftime("%Y_%m_%d-%H_%M_%S")
+        new_filename = msg_date_string+"#"+f
+        new_filepath = os.path.join(folder, new_filename)
+        msg.close()
 
-	msg_glob = glob.glob(msg_filepath)
-
-	for filename in msg_glob:
-		msg = extract_msg.Message(filename)
-		msg_sender = msg.sender
-		msg_date = msg.date
-		msg_subject = msg.subject
-		msg_body = msg.body
-		msg_datetime = parse(msg_date)
-		msg_date_string = msg_datetime.strftime("%Y_%m_%d-%H_%M_%S")
-		new_filename = msg_date_string+"#"+f
-		new_filepath = os.path.join(folder, new_filename)
-		msg.close()
-
-	msg_file_md5 = md5(msg_filepath)
-	os.rename(msg_filepath,new_filepath)
-	log_data.append(f"{msg_filepath}|{new_filename}|{msg_file_md5}")
+        msg_file_md5 = md5(msg_filepath)
+        os.rename(msg_filepath,new_filepath)
+        log_data.append(f"{msg_filepath}|{new_filename}|{msg_file_md5}")
+    
+    except:
+        print(f"Couldn't process {msg_filepath} - might be damaged or not an email file.")
 
 with open(my_log_file, "w", encoding = "utf8") as data:
-	data.write("\n".join(log_data))
+    data.write("\n".join(log_data))
 
