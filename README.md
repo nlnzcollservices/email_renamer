@@ -1,5 +1,5 @@
 # Email Renamer
-Uses [https://pypi.org/project/extract-msg/](url)extract_msg to prepend the received datetime of a msg email file as a string to the .msg file name. Move emails into month folders based on the received date. Returns file fixity to aid file analysis.
+Uses [extract_msg](https://pypi.org/project/extract-msg/) to prepend the received datetime of a msg email file as a string to the .msg file name. Move emails into month folders based on the received date. Returns file fixity to aid file analysis.
 
 This repo has three scripts:
 
