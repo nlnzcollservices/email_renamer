@@ -14,7 +14,7 @@ Creates log file that lists original filepath, new filename, and file fixity. (|
 my_log_file = "log.txt"
 
 ### set to filepath of folder containing .msg files to process.
-folder = r"Z:\NDHA\testing\emails\2020\March_2020"
+folder = r"folder"
 
 
 def md5(fname):
