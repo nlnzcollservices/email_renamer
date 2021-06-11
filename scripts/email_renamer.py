@@ -43,7 +43,7 @@ for f in [x for x in os.listdir(folder) if x.endswith(".msg")]:
 		new_filepath = os.path.join(folder, new_filename)
 		msg.close()
 
-	msg_file_md5 = md5(msg_file)
+	msg_file_md5 = md5(msg_filepath)
 	os.rename(msg_filepath,new_filepath)
 	log_data.append(f"{msg_filepath}|{new_filename}|{msg_file_md5}")
 
