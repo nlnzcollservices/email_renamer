@@ -1,6 +1,5 @@
 from dateutil.parser import parse
 import os
-import glob
 import extract_msg
 import hashlib
 
