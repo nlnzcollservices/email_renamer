@@ -35,18 +35,18 @@ for f in [x for x in os.listdir(folder) if x.endswith(".msg")]:
         msg_date = msg.date     
         msg_datetime = parse(msg_date)
 
-        my_folder = os.path.join(root, msg_datetime.strftime('%B_%Y'))
+        folder_by_date = os.path.join(root, msg_datetime.strftime('%B_%Y'))
 
-        if not os.path.exists(os.path.join(folder, my_folder)):
-            os.mkdir(os.path.join(folder, my_folder))
+        if not os.path.exists(os.path.join(folder, folder_by_date)):
+            os.mkdir(os.path.join(folder, folder_by_date))
 
 
-        my_date_string = msg_datetime.strftime("%Y_%m_%d-%H_%M_%S")
+        msg_date_string = msg_datetime.strftime("%Y_%m_%d-%H_%M_%S")
         if "#" not in f:
-            new_filename = my_date_string+"#"+f
+            new_filename = msg_date_string+"#"+f
         else:
             new_filename = f
-        new_filepath = os.path.join(folder,my_folder, new_filename)
+        new_filepath = os.path.join(folder,folder_by_date, new_filename)
         msg.close()
 
         msg_file_md5 = md5(msg_filepath)
