@@ -2,11 +2,8 @@ from dateutil.parser import parse
 import os
 import extract_msg
 import hashlib
-import os
 
-"""Removes the received datetime of an msg email file as a string to the .msg file name
-Delimited by a #
-i.e. 'yyyy_mm_dd-hh_mm_ss#[original_filename].msg'
+"""Removes the received datetime of an .msg email file that has previously been added as a prefix to the file name by another email_renamer script
 
 Creates log file that lists original filepath, new filename, and file fixity. (| delimited)
 """
@@ -30,7 +27,7 @@ for f in [x for x in os.listdir(folder) if x.endswith(".msg")]:
     new_filename=f.split("#")[1]
     new_filepath = os.path.join(folder, new_filename)
     msg_file_md5 = md5(msg_filepath)
-    #If the filename already exists in the folder, the filename will not be changed back
+    #If the 'cleaned' filename already exists in the folder, the filename will not be changed back
     if not os.path.exists(new_filepath):
             os.rename(msg_filepath,new_filepath)
             log_data.append(f"{msg_filepath}|{new_filename}|{msg_file_md5}")
